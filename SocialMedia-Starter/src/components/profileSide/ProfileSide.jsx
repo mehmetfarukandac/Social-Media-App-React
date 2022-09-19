@@ -1,9 +1,13 @@
 import React from "react";
 import LogoSearch from "../logoSearch/LogoSearch";
+import ProfileCard from "../profileCard/ProfileCard";
+
+import "./ProfileSide.css";
 const ProfileSide = () => {
   return (
-    <div className="profileSide">
+    <div className="ProfileSide">
       <LogoSearch />
+      <ProfileCard />
     </div>
   );
 };

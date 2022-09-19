@@ -1,2 +1,2 @@
 # Social-Media-App-Practice
-Bu, iyi bir sosyal medya uygulaması yapmak için çok iyi bir uygulama olacaktır. Node.js, MonogoDb, Express Server ve React.js hakkında güçlü bir anlayışa sahip olmak için. Boş olduğum zamanlarda iyi proje uygulamaları yapmayı seviyorum.
+This would be a very good app to make a good social media app. To have a strong understanding of Node.js, MonogoDb, Express Server and React.js. I like to make good project applications when I am free.

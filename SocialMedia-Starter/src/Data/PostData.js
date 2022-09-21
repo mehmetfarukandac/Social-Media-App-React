@@ -27,9 +27,9 @@ export const PostsData = [
   },
   {
     img: postPic4,
-    name: "Salena Gomez",
-    desc: "At Archery Festival",
-    likes: 800,
+    name: "Mustafa Kemal Atatürk",
+    desc: "Peace at home, Peace in the World",
+    likes: 1800,
     liked: false,
   },
 ];

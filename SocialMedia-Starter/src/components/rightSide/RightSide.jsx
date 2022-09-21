@@ -5,8 +5,11 @@ import Noti from "../../img/noti.png";
 import Comment from "../../img/comment.png";
 import { UilSetting } from "@iconscout/react-unicons";
 import TrendCard from "../trendCard/TrendCard";
+import ShareModal from "../shareModal/ShareModal";
 
 function RightSide() {
+  const [modelOpened, setModelOpened] = useState(false);
+
   return (
     <div className="RightSide">
       <div className="navIcons">
@@ -18,9 +21,10 @@ function RightSide() {
 
       <TrendCard />
 
-      <button className="button r-button">
+      <button className="button r-button" onClick={() => setModelOpened(true)}>
         Share
       </button>
+      <ShareModal modelOpened={modelOpened} setModelOpened={setModelOpened} />
     </div>
   );
 }

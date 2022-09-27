@@ -10,17 +10,44 @@ import {
 } from "@iconscout/react-unicons";
 import { useState } from "react";
 import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { uploadImage } from "../../actions/uploadAction";
 
 function PostShare() {
-  const [image, setimage] = useState(null);
+  const dispatch = useDispatch();
+  const [image, setImage] = useState(null);
+  const { user } = useSelector((state) => state.authReducer.authData);
   const imageRef = useRef();
+
+  const desc = useRef();
 
   const onImagechange = (event) => {
     if (event.target.files && event.target.files[0]) {
       let img = event.target.files[0];
-      setimage({
-        image: URL.createObjectURL(img),
-      });
+      setImage(img);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newPost = {
+      userId: user._id,
+      desc: desc,
+    };
+
+    if (image) {
+      const data = new FormData();
+      const filename = Date.now() + image.name;
+      data.append("name", filename);
+      data.append("file", image);
+      newPost.image = filename;
+      console.log(newPost);
+      try {
+        dispatch(uploadImage(data));
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -28,7 +55,12 @@ function PostShare() {
     <div className="PostShare">
       <img src={ProfileImage} alt="" />
       <div>
-        <input type="text" placeholder="What's happening?" />
+        <input
+          ref={desc}
+          required
+          type="text"
+          placeholder="What's happening?"
+        />
         <div className="postOptions">
           <div
             className="option"
@@ -50,7 +82,9 @@ function PostShare() {
             <UilLocationPoint />
             Schedule
           </div>
-          <button className="button ps-button">Share</button>
+          <button className="button ps-button" onClick={handleSubmit}>
+            Share
+          </button>
           <div style={{ display: "none" }}>
             <input
               type="file"
@@ -62,8 +96,8 @@ function PostShare() {
         </div>
         {image && (
           <div className="previewImage">
-            <UilTimes onClick={()=>setimage(null)}/>
-            <img src={image.image} alt="" />
+            <UilTimes onClick={() => setImage(null)} />
+            <img src={URL.createObjectURL(image)} alt="" />
           </div>
         )}
       </div>
